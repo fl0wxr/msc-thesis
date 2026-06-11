@@ -1,0 +1,123 @@
+\section{Discussion}
+\chead{\thesection. Discussion}
+
+\subsubsection*{Sparsity as a Computational Enabler}
+
+Only a tiny fraction of all possible protein pairs are preserved after
+pairwise alignment and the subsequent E-value filtering: for the full \texttt{ref\_prot} dataset (82.1 million
+proteins, 1.76 billion edges), the fraction of observed edges relative to a
+complete graph is approximately \(5.2\text{e}-7\). This extreme sparsity makes
+graph‑based clustering feasible on a single node, as it reduces both memory and
+time complexity from \(\mathcal{O}(n^2)\) and \(\mathcal{O}(n^3)\) to
+\(\mathcal{O}(n k_0)\) and \(\mathcal{O}(n k_0^2)\), respectively, where \(k_0
+\approx 21\) is the average number of non‑trivial entries per column of the
+adjacency matrix. The complexity analysis in the Background
+(Observe Fig.~\ref{fig:complexity}) quantifies this advantage and is directly reflected
+in the experimental runtimes: MCL completes within 2–3 days for the full
+dataset using \(\sim 440\) GiB of memory, while a dense approach would
+require petabytes of memory and years of computation.
+
+\subsubsection*{Qualitative Characteristics of the Data and Clusters}
+
+Frequency diagrams of amino acid compositions shown in Fig.~\ref{fig:aa_distr}
+and sequence lengths of Fig.~\ref{fig:len_freq} provide a global signature of
+each selected proteome but are not sufficient for clustering: they describe global
+biases, not the pairwise relationships that determine cluster membership.
+Additionally, from Fig.~\ref{fig:aa_distr}, the observed hydrophobic‑to‑charged
+residue ratios range from 1.14 \textit{Danio rerio} (zebrafish) to 1.46
+\textit{Carnobacterium maltaromaticum} (bacterium). To conveniently
+discriminate between hydrophobic and charged residues, the reader can also view
+the amino acid lookup table in Appendix~\ref{appendix:aminoAcidLookup}. 
+
+Recent approaches have used learned embeddings from protein language models,
+including TAPE~\cite{rao2019transformer}, ESM-2~\cite{lin2022esm2}, and
+ProGen2~\cite{nijkamp2022progen2}, to represent sequences in Euclidean space.
+While these methods achieve strong performance on some tasks, they trade off
+interpretability and introduce large memory overhead. In contrast, the
+graph‑based representation used here derives similarity directly from alignment
+scores, preserving biological meaning without black‑box abstraction.
+
+With this graph‑based representation, the resulting clusters can be directly
+interpreted by examining their taxonomic composition and structural coherence.
+The three largest clusters each consist predominantly of proteins from the same
+organism \textit{Austropuccinia psidii MF-1}, (rust fungus) with TaxID 01389203
+a strain from a species that causes myrtle rust in various plants.
+\textit{Austropuccinia psidii} (myrtle rust) is a pathogen of Myrtaceae plants
+\cite{psidii}. This can be observed in the bar plot of
+Fig.~\ref{fig:partition_composition} (j), showing the top-25 clusters ranked
+from largest to smallest. Hence, this suggests that this organism possesses
+unusually large and diverse protein families, each large enough to form a top
+cluster. Other organisms appear primarily in smaller clusters, indicating
+either lower representation in the dataset or less internal sequence diversity.
+Purity values are high across the top‑25 clusters, indicating that MCL tends to
+group proteins that match the biological profile of a limited set of dominant
+organisms, especially in the largest clusters.
+
+\subsubsection*{Algorithmic Behaviour: Granularity and Differences Between MCL and HipMCL}
+
+Higher inflation consistently produces more clusters than lower inflation as
+shown in Table~\ref{tab:experimentsPalladium} and, for datasets up to 35
+million proteins, also reduces runtime. This matches MCL's design: inflation
+strengthens dominant connections, accelerates convergence, and yields finer
+granularity. The cluster size distribution (Fig.~\ref{fig:cluster_distr})
+partially supports this premise: the distribution moves towards smaller
+clusters when inflation is set to 2.5 for both algorithms.
+
+Although MCL and HipMCL share the same core algorithm, HipMCL consistently
+produces slightly more clusters at the same inflation value, likely due to
+differences in pruning strategies or numerical precision. However, its memory
+overhead (2–4 times higher than MCL) and convergence issues make it impractical
+for single‑node runs on datasets larger than 3 million sequences. This does not
+diminish HipMCL's value; it was designed for distributed environments, where it
+excels.
+
+\subsubsection*{Reproducibility and Random Walks}
+
+Both MCL and HipMCL rely on random walks that simulate flow in the graph, but
+their implementations differ in pruning strategies, numerical precision, and
+convergence criteria. Table~\ref{tab:experimentsPalladium} shows that for the
+same inflation, direct quantitative comparison of individual clusters between
+MCL and HipMCL is inherently ambiguous.
+
+However, this does not compromise the reproducibility of the present work. The
+reported metrics --- runtime, peak memory, number of clusters, cluster size
+distributions, and taxonomic purity --- are all stable across runs. Moreover,
+the exact clusters produced by each algorithm can be reproduced by fixing the
+input graph and using the same software versions (commit digests) and
+parameters. The workflow is implemented in \texttt{bioscflow}, a Python
+codebase that orchestrates GeneCAST, DIAMOND, MCL, and HipMCL (observe
+Fig.~\ref{fig:workhigh}), manages file paths and intermediate data, and
+systematically records execution logs and runtime metrics in JSON session
+reports which is particularly useful when producing multiple experiments. The
+observed differences in cluster counts and granularity between MCL and HipMCL
+are therefore meaningful as algorithmic characteristics, even if individual
+cluster assignments are not
+directly comparable.
+
+\subsubsection*{Limitations}
+
+Three main limitations should be noted. First, HipMCL was tested only in
+single‑node mode; its poor performance here does not reflect its capabilities
+on large clusters. Second, biological validation of individual clusters was
+outside the scope of this work. Third, the reference proteome dataset, while
+large, is biased toward well‑studied organisms, and the chosen BLASTp
+thresholds may not be optimal for every application.
+
+Another major limitation concerns the stochastic nature of the random walks
+underlying both MCL and HipMCL. Because the algorithms rely on simulated flow,
+runtime measurements may exhibit non‑deterministic fluctuations. In principle,
+a larger input could occasionally complete faster than a smaller input in a
+single run, potentially obscuring true scaling behavior. All reported runtimes
+are based on single executions; therefore, the observed trends should be
+interpreted with caution. Systematic averaging over multiple runs with
+different random seeds would be required to obtain statistically reliable scaling
+estimates.
+
+\subsubsection*{Design Priorities Revisited}
+
+The workflow meets the three priorities set in the Introduction, namely
+\textit{Scalability}: MCL processed 82 million sequences on a single node.
+\textit{Reproducibility}: the entire pipeline is implemented in
+\texttt{bioscflow} with versioned tools and commits. \textit{Interpretability}:
+graph edges are derived directly from alignment scores, avoiding black‑box
+embeddings.

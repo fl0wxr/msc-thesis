@@ -1,0 +1,196 @@
+% ===== Load Package =====
+
+% Figures. `[draft]` replaces images with placeholders. Useful when in early writing stages for faster compilation.
+\usepackage{graphicx}
+
+% Allows the use of H(here) option in figure and table placement. H forces the placement of a figure or table directly below some other object.
+\usepackage{float}
+
+% Adds maths symbols such as `\mathbb{R}`, `\mathbb{N}`, `\subsetneq`.
+\usepackage{amssymb}
+
+% Provides the `align` environment.
+\usepackage{amsmath}
+
+% Manipulation of margins and the page sizes (e.g. A4 paper).
+\usepackage{geometry}
+
+% Hyperlinks in cited numbers, footnotes, links etc.
+\usepackage{hyperref}
+
+% Random text. Unnecessary.
+\usepackage{lipsum}
+
+% Header and footer manipulation.
+\usepackage{fancyhdr}
+
+% Table.
+\usepackage{tabularx}  % Length.
+\usepackage{booktabs}  % Style.
+\usepackage{multirow}  % Multirow.
+
+% Equations/formula box. Implicitly loads the `xcolor` package.
+\usepackage{tcolorbox}
+
+% Code/algorithm block.
+\usepackage{listings}
+
+% Font encoding. T1 is a slightly lighter font. Less bold. Easier to read. Default is OT1.
+\usepackage[T1]{fontenc}
+
+% Greek letter typing.
+\usepackage[greek, english]{babel}
+\usepackage{alphabeta}
+
+% Provides the `adjustwidth` macro to control page margins.
+\usepackage{changepage}
+
+% Provides the `cellcolor` macro to define table cell color.
+\usepackage{colortbl}
+
+% TOC controls.
+\usepackage{tocloft}
+
+% Configurability of the description macro. Allows setting the indentation.
+\usepackage{enumitem}
+
+% Grid of figures allowing caption for each included figure.
+\usepackage{subcaption}
+
+% Math mode.
+\usepackage[mathscr]{euscript}
+
+% Checkbox X symbol.
+\usepackage{pifont}
+
+% ===== Configuration =====
+
+% Code snippet -- Plaintext.
+\lstdefinestyle{plaintextstyle}{
+  language=,
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!10},
+  framexleftmargin=1mm,
+  framexrightmargin=1mm,
+  tabsize=2,
+  numbers=left,
+  numberstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  breakindent=0pt,
+  breakatwhitespace=false,
+  showspaces=true,  % Show spaces as a symbol.
+  upquote=true,     % Proper quotes.
+  literate={\ }{{\color{gray!80}\textperiodcentered}}1,  % Replace space with centered dot.
+  columns=fullflexible,
+  keepspaces=true,  % Consecutive whitespaces after first non-whitespace character works properly.
+  lineskip=2pt      % Fix: Background color of lines that include math expressions.
+}
+\lstnewenvironment{plaintext}[1][]{
+  \lstset{
+    style=plaintextstyle,
+    mathescape=true,
+    #1
+  }
+}{}
+
+\lstdefinestyle{pythonstyle}{
+  language=Python,
+  captionpos=b,
+  escapeinside={(*}{*)},
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!10},
+  framexleftmargin=1mm,
+  framexrightmargin=1mm,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red},
+  tabsize=2,
+  numbers=left,
+  numberstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  breakindent=0pt,
+  breakatwhitespace=false,
+  literate={\ }{{\color{gray!80}\textperiodcentered}}1,  % Replace space with centered dot.
+  columns=fullflexible,
+  keepspaces=true,  % Consecutive whitespaces after first non-whitespace character works properly.
+}
+\lstnewenvironment{python}[1][]{
+  \lstset{style=pythonstyle,#1}
+}{}
+
+% Table of Contents depth of sections.
+\setcounter{tocdepth}{3}
+
+% Paragraph indentation and vertical spacing.
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{0.7em}
+
+% Table cell coloring macro.
+\newcommand{\highlightedCell}{\cellcolor[rgb]{0.9,1,1}}
+
+% Section title display format.
+\makeatletter
+\renewcommand{\@seccntformat}[1]{%
+  \csname the#1\endcsname\quad\textcolor{gray!40}{\textbar}\quad
+}
+\makeatother
+
+\geometry{
+  top=20mm,
+  left=20mm,
+  right=20mm,
+  bottom=17mm,
+%  headsep=8mm
+}
+
+% Header text: First pages.
+\fancypagestyle{firstpages}{
+	\fancyhead[L]{%
+	  \small Scalable Protein Community Detection\\Manuscript
+	}
+	\fancyhead[R]{%
+	  \small © 2026 The Author(s)\\Licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{CC-BY 4.0 license}
+	} % PREPRINT can be placed alternatively if this is a manuscript.
+}
+
+% Header text: The rest of pages.
+\fancypagestyle{restpages}{
+	\fancyhead[L]{}
+	\fancyhead[R]{}
+	\renewcommand{\headrulewidth}{0.4pt} % Horizontal line across header
+}
+
+% Remove the horizontal line below the header.
+\renewcommand\headrulewidth{0pt}
+
+% Enable the footer and header functionality of fancyhdr.
+\pagestyle{fancy}
+
+% Set equation numbering format under section.
+\numberwithin{equation}{section}
+
+% Color definition
+\definecolor{maroon}{HTML}{6C0103}
+
+% TOC.
+\setlength{\cftaftertoctitleskip}{3ex}  % Space after title.
+\setlength{\cftbeforesecskip}{1ex}  % Space before section entries.
+\setlength{\cftbeforesubsecskip}{0.6ex}  % Space before subsection entries.
+\setlength{\cftbeforesubsubsecskip}{0.6ex}  % Space before subsubsection entries.
+
+% Appendix title formatting.
+\newcounter{appendixsection}
+\setcounter{appendixsection}{0}
+\newcommand{\appendixsec}[1]{%
+  \refstepcounter{appendixsection}%
+  \subsection*{\Alph{appendixsection}\quad\textcolor{gray!40}{\textbar}\quad #1}%
+  \addcontentsline{toc}{subsection}{Appendix \Alph{appendixsection}: #1}%
+  \setcounter{equation}{0}%
+  \renewcommand{\theequation}{\Alph{appendixsection}.\arabic{equation}}%
+}
+
+% Appendix displayed reference number formatting.
+\renewcommand{\theappendixsection}{\Alph{appendixsection}}
+
+% Set maximum number of matrix shapes.
+\setcounter{MaxMatrixCols}{20}

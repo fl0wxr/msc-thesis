@@ -1,0 +1,127 @@
+\section*{Appendices}
+\chead{Appendices}
+
+\phantomsection
+\addcontentsline{toc}{section}{Appendices}
+
+\appendix
+\appendixsec{Molecule Lookup Tables}
+\label{appendix:aminoAcidLookup}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\renewcommand{\thetable}{A\arabic{table}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\begin{table}[htbp]
+  \centering
+  \begin{minipage}{0.58\linewidth}
+    \centering
+    \captionof{table}{Amino acid codes. Selenocysteine (\texttt{U}) and pyrrolysine (\texttt{O}) are non-standard. Hydrophobic (\textbf{H}) and Charged (\textbf{C}) properties are indicated with \ding{51} (yes) or \textcolor{gray}{\ding{53}} (no).}
+    \begin{tabular}{clcc}
+      \toprule
+      \textbf{1-letter} & \textbf{Full Name} & \textbf{H} & \textbf{C} \\
+      \midrule
+      \texttt{A} & Alanine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{R} & Arginine & \textcolor{gray}{\ding{53}} & \ding{51} \\
+      \texttt{N} & Asparagine & \textcolor{gray}{\ding{53}} & \textcolor{gray}{\ding{53}} \\
+      \texttt{D} & Aspartic acid & \textcolor{gray}{\ding{53}} & \ding{51} \\
+      \texttt{C} & Cysteine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{E} & Glutamic acid & \textcolor{gray}{\ding{53}} & \ding{51} \\
+      \texttt{Q} & Glutamine & \textcolor{gray}{\ding{53}} & \textcolor{gray}{\ding{53}} \\
+      \texttt{G} & Glycine & \textcolor{gray}{\ding{53}} & \textcolor{gray}{\ding{53}} \\
+      \texttt{H} & Histidine & \textcolor{gray}{\ding{53}} & \ding{51} \\
+      \texttt{I} & Isoleucine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{L} & Leucine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{K} & Lysine & \textcolor{gray}{\ding{53}} & \ding{51} \\
+      \texttt{M} & Methionine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{F} & Phenylalanine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{P} & Proline & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{S} & Serine & \textcolor{gray}{\ding{53}} & \textcolor{gray}{\ding{53}} \\
+      \texttt{T} & Threonine & \textcolor{gray}{\ding{53}} & \textcolor{gray}{\ding{53}} \\
+      \texttt{W} & Tryptophan & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{Y} & Tyrosine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \texttt{V} & Valine & \ding{51} & \textcolor{gray}{\ding{53}} \\
+      \midrule
+      \texttt{U} & Selenocysteine & \textcolor{gray}{\ding{53}} & \textcolor{gray}{\ding{53}} \\
+      \texttt{O} & Pyrrolysine & \textcolor{gray}{\ding{53}} & \textcolor{gray}{\ding{53}} \\
+      \bottomrule
+    \end{tabular}
+    \label{tab:amino_acids}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.40\linewidth}
+    \centering
+    \captionof{table}{DNA residues.}
+    \begin{tabular}{cl}
+      \toprule
+      \textbf{1-letter} & \textbf{Full Name} \\
+      \midrule
+      \texttt{A} & Adenine \\
+      \texttt{C} & Cytosine \\
+      \texttt{G} & Guanine \\
+      \texttt{T} & Thymine \\
+      \bottomrule
+    \end{tabular}
+    \label{tab:dna}
+
+    \vspace{0.5cm}
+
+    \centering
+    \captionof{table}{RNA residues.}
+    \begin{tabular}{cl}
+      \toprule
+      \textbf{1-letter} & \textbf{Full Name} \\
+      \midrule
+      \texttt{A} & Adenine \\
+      \texttt{C} & Cytosine \\
+      \texttt{G} & Guanine \\
+      \texttt{U} & Uracil \\
+      \bottomrule
+    \end{tabular}
+    \label{tab:rna}
+  \end{minipage}
+\end{table}
+
+\appendix
+\appendixsec{Stochasticity Preservation of Exponentiated Matrices}
+\label{appendix:proofExp}
+
+\textbf{Theorem}. Suppose \(\mathcal{M}\) is any square matrix with real entries where each column is a discrete probability distribution (PD). Then for every \(e \in \mathbb{N}^*\), each column of \(\mathcal{M}^e\) is a PD as well.
+
+\textit{Proof}
+
+To justify the aforementioned proposition, the following proof method will rely on mathematical induction. Define the proposition \(h_{e}\) as
+\[
+  \sum_{j = 1}^{n} (\mathcal{M}^e)_{j, k} = 1 \ \left( \forall k \in \{ 1, \dots, n \} \right).
+\]
+The base case \(h_1\) (for \(e:=1\)) holds, since all columns of \(\mathcal{M}^1\) are already PDs. Now it suffices to prove that \(h_{e}\) implies \(h_{e+1}\).
+
+Accordingly, for some arbitrary \(e \in \mathbb{N}^{*}\), the proposition \(h_e\) is assumed to be true. Given this premise, to confirm that \(h_{e+1}\) holds, fix \(k \in \{ 1, \dots, n \}\) and compute the sum
+\begin{align*}
+  \sum_{j=1}^{n} ( \mathcal{M}^{e+1} )_{j,k}
+  & = \sum_{j=1}^{n} \left( \sum_{q=1}^{n} ( (\mathcal{M}^{e})_{j,q} \cdot \mathcal{M}_{q,k} ) \right)
+  \\
+  & = \sum_{q=1}^{n} \left( \sum_{j=1}^{n} \left( (\mathcal{M}^{e})_{j,q} \cdot \mathcal{M}_{q,k} \right) \right)
+  \\
+  & = \sum_{q=1}^{n} \left( \sum_{j=1}^{n} \left( \mathcal{M}_{q,k} \cdot (\mathcal{M}^{e})_{j,q} \right) \right)
+  \\
+  & = \sum_{q=1}^{n} \left( \mathcal{M}_{q,k} \cdot \sum_{j=1}^{n} (\mathcal{M}^{e})_{j,q} \right)
+  \\
+  & \overset{h_{e}}{=} \sum_{q=1}^{n} ( \mathcal{M}_{q,k} \cdot 1 )
+  \\
+  & = \sum_{q=1}^{n} \mathcal{M}_{q,k}
+  \\
+  & \overset{h_{1}}{=} 1.
+\end{align*}
+Subsequently, by induction, the proposition \(h_{e}\) holds for all \(e \in \mathbb{N}^*\).
+
+Also, since \(\mathcal{M}_{j,k} \in [0, 1]\), notice that \((\mathcal{M}^e)_{j,k} > 0\). Suppose there exists a pair \(j_0, k_0 \in \{ 1, \dots, n \}\) such that \((\mathcal{M}^{e})_{j_0, k_0} > 1\). Then since \((\mathcal{M}^e)_{j, k_0} > 0\) for all \(j \in \{ 1, \dots, n \}\), we have that
+\[
+  \sum_{j=0}^{n} (\mathcal{M}^{e})_{j, k_0} > 1
+\]
+which is impossible since it contradicts \(h_e\); hence no such pair \(j_0, k_0\) can exist. Therefore, for all \(j, k \in \{ 1, \dots, n \}\), it is
+\[
+  (\mathcal{M}^{e})_{j, k} \in [0, 1] .
+\]
+
+\(\blacksquare\)

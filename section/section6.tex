@@ -1,0 +1,33 @@
+\section[Conclusion \& \ Future Work]{Conclusion \& Future Work}
+\chead{\thesection. Conclusion \& Future Work}
+
+This thesis investigated the practical scalability of the Markov Clustering
+Algorithm (MCL) and its high‑performance variant HipMCL for protein sequence
+similarity networks on a single compute node. Using datasets ranging from
+20,000 to 82 million protein sequences from reference proteomes, we established
+a clear computational baseline.
+
+The key findings are:
+
+\begin{enumerate}
+  \item \textbf{MCL scales to 82 million sequences} on a single node, completing in 2–3 days with \(\sim\) 440 GiB of memory. The observed runtime and memory usage follow the expected \(\mathcal{O}(n k_0^2)\) complexity, enabled by extreme graph sparsity.
+  \item \textbf{HipMCL is not suitable for single‑node use} beyond 3 million sequences; its memory overhead and convergence issues lead to failures within a 4‑day limit.
+  \item \textbf{Cluster quality is appropriate}: Clusters are taxonomically pure (overall purity 0.96) and structurally coherent, as confirmed by AlphaFold structure superimposition.
+  \item \textbf{Inflation controls granularity}: Higher inflation arguments (2.5) produce finer clusters compared to lower ones (1.8), with faster convergence on most datasets.
+\end{enumerate}
+
+These results provide a green light for scaling the StratoCluster pipeline to cloud environments.
+
+\subsubsection*{Future Work}
+
+Building on this baseline, three directions are planned:
+
+\begin{enumerate}
+  \item \textbf{Statistical characterization}: Perform Monte Carlo simulations on synthetic sequence datasets of controlled size and sparsity to average out stochastic fluctuations and obtain reliable runtime estimates.
+  \item \textbf{GPU acceleration}: Parallelize the all‑vs‑all alignment and graph construction steps using CUDA to reduce preprocessing time.
+  \item \textbf{Distributed execution}: Deploy HipMCL in its intended distributed configuration using MPI across multiple nodes to process the full 12,000‑proteome sequence set.
+\end{enumerate}
+
+The single‑node baseline established here is a necessary prerequisite for these
+larger‑scale efforts and serves as a foundation for future benchmark studies,
+e.g., comparison with other state‑of‑the‑art clustering workflows.

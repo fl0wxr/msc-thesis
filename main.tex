@@ -1,0 +1,258 @@
+\documentclass[a4paper,12pt]{extarticle}
+\usepackage{setup}
+
+\begin{document}
+
+  \pagestyle{plain}  % Disable header content.
+
+  % ===== Cover =====
+
+  \begin{titlepage}
+    \begin{center}
+      \vspace*{1cm}  % Respects page break.
+
+      \Large{\textsc{\textcolor{maroon}{Aristotle University of
+Thessaloniki\\Department of Informatics}}}
+
+      \vspace{1.5cm}
+
+      \Large{\textsc{Postgraduate Thesis}}
+
+      \vspace{1cm}
+
+      \line(1,0){415}
+      \vspace{5.5mm}
+      {\fontsize{20}{24}\selectfont\bfseries
+        \parbox{415pt}{\centering Analysis of a Scalable and Reproducible Clustering Workflow in Protein Sequence Similarity Networks}
+      }
+
+      \vspace{2mm}
+      \line(1,0){415}
+    \end{center}
+    \vspace{3cm}
+    \begin{adjustwidth}{6mm}{6mm}
+      \large{\textbf{\textit{Author}}}
+      \hfill
+      \large{\textbf{\textit{Supervisor}}}
+      \\
+      \textcolor{maroon}{\large{Apostolos \textsc{Dimoulakis}}}
+      \hfill
+      \textcolor{maroon}{\large{Dr. Christos A. \textsc{Ouzounis}}}
+      \\
+    \end{adjustwidth}
+    
+    \vspace{\fill}
+    
+    \begin{center}
+      \textbf{\large{?\{month\} ?\{day\}, 2026}}
+    \end{center}
+  \end{titlepage}
+  
+  % ===== Abstract =====
+
+  \pagenumbering{roman}
+  
+  \thispagestyle{firstpages}
+  
+  \subsection*{%
+    \center Abstract
+  }
+  
+  \lipsum[1]
+    
+  \vspace{\fill}
+
+  \subsection*{%
+    \center Περίληψη
+  }
+
+  \lipsum[1]
+  
+  \vspace{\fill}
+  
+  \cleardoublepage
+
+  % ===== Thesis Committee & Acknowledgements =====
+  
+  \thispagestyle{firstpages}
+  
+  \vspace*{\fill}
+  
+  \subsection*{%
+    Thesis Committee Members
+  }
+
+  \begin{tabular}{r p{12cm}}
+    \multicolumn{2}{c}{} \\
+
+      Dr. Christos A. Ouzounis, Professor & School of Informatics \\
+      \\[-3.5mm]
+      Project Supervisor & Aristotle University of Thessaloniki
+%      \\[5.0mm]
+%      Dr. Christos A. Ouzounis, Professor & School of Informatics \\
+%      \\[-3.5mm]
+%      Project Supervisor & Aristotle University of Thessaloniki
+    \end{tabular}
+
+  \vspace{7.0mm}
+
+  \subsection*{%
+    Acknowledgements
+  }
+
+  I would like to sincerely thank the committee members for their guidance and support, and my colleague Anastasios Karydis for his cooperation and technical assistance throughout this research project.
+
+  \vspace{\fill}
+
+  \cleardoublepage
+
+  % ===== Table of Contents =====
+
+  \tableofcontents
+  \cleardoublepage
+
+  % ===== Glossaries =====
+
+  \subsection*{%
+    \centering Glossary
+  }
+  
+  The following definitions are included to support the reader's understanding of concepts referenced in this thesis.
+  
+  \subsubsection*{%
+    \textcolor{gray}{Molecular Chemistry}
+  }
+
+  \begin{description}[leftmargin=1.2em]
+    \item[Molecule]: A chemically bonded group of two or more atoms that forms a discrete, electrically neutral unit.
+    \item[Covalent Bond]: The sharing of electron pairs between atoms. This forms the fundamental structure of molecules. This is the strongest type of bond and the backbone of amino acids and proteins.
+    \item[Monomer]: A molecule that can form covalent bonds with two or more other molecules in a stable and repeating pattern, leading to a larger molecule called polymer.
+    \item[Monomeric Unit]: The largest constitutional unit of a macromolecule that corresponds to a single monomer.
+    \item[Amino Acid]: A monomer that contains both \(-\text{NH}_2\) and \(-\text{COOH}\). Here, the notation \(-X\) means that there is a covalent bond between some unspecified molecule and molecule \(X\) (e.g., \(\text{NH}_2\)). An amino acid can link together with other amino acids to form a protein.
+    \item[Macromolecule]: A molecule of high relative molecular mass, the structure of which essentially comprises the multiple repetition of units derived, actually or conceptually, from molecules of low relative molecular mass.
+    \item[Polymer]: A polymer is a large molecule made up of repeating monomer units covalently bonded together.
+    \item[Residue]: A molecular unit that constitutes part of a macromolecule after covalent incorporation of a monomer, retaining the core atomic structure of the original monomer but lacking the atoms lost during bond formation.
+  \end{description}
+  
+  \subsubsection*{%
+    \textcolor{gray}{Genomics}
+  }
+  
+  \begin{description}[leftmargin=1.2em]
+    \item[Domain \textnormal{or} Superkingdom]: The broadest taxonomic rank in the tree of life, above kingdom, grouping organisms based on fundamental cellular and genetic characteristics. The domains is classified as one of the following organism classes: Bacteria, Archaea or Eukaryota.
+    \item[DNA]: Long, double-stranded molecule that stores an organism's genetic information.
+    \item[mRNA]: Carries the genetic instructions from DNA. Ribosomes read its codons to determine the amino-acid sequence.
+    \item[tRNA]: A type of RNA that brings amino acids to the ribosome from the cytoplasm (amino acids float abundantly); each has an anticodon that matches a specific mRNA codon.
+    \item[Codon]: A subsequence of 3 bases from the mRNA sequence (alphabet).
+    \item[Anticodon]: Attaches to a codon (3 bases to 3 bases) to receive the signal that specifies the amino acid. Each anticodon has at least one complementary/matching codon that triggers the release of the carried amino acid.
+    \item[Prokaryota]: Single-cell organisms without a true nucleus or membrane-bound organelles. Prokaryota are either bacteria or archaea.
+    \item[Bacteria]: Prokaryotic, unicellular organisms without a nucleus.
+    \item[Archaea]: Prokaryotic organisms with distinct biochemistry from bacteria.
+    \item[Eukaryota]: Organisms with eukaryotic cells, including animals, plants, fungi, and protists.
+    \item[Protein (Sequence)]: A chain of amino acids that can fold into a functional structure; in this thesis, represented as its amino acid residue sequence (i.e., the protein's primary structure).
+    \item[Reference Protein Sequence]: A protein sequence that represents a set of similar sequences.
+    \item[Protein Primary Structure]: The sequence of covalently bonded amino acid residues of a protein.
+    \item[Genome]: The complete set of genetic material in an organism, including all of its DNA (or RNA in some viruses), encompassing all genes as well as non-coding sequences.
+    \item[Gene]: A subsequence of DNA that encodes a functional product, such as a protein or functional RNA. One gene may encode multiple proteins.
+    \item[Motif]: A recurring, biologically meaningful sequence pattern associated with a specific structural or functional role. Motifs are typically short and locally conserved, but allow variability in the form of substitutions and, in some cases, insertions or deletions.
+    \item[Proteome]: The complete set of proteins encoded by an organism's genome.  
+    \item[Reference Proteome]: A representative, non-redundant subset of a proteome, used as a computational baseline or ground truth.
+    \item[Phylogeny]: The evolutionary history and relationships among species or genes, often represented as a tree or hierarchy, based on genetic or protein sequences.
+    \item[Isoforms]: A set of sequences are isoforms when a member sequence (i.e., an isoform) is derived from the same gene (DNA), differing from the canonical sequence due to alternative splicing (in Eukaryota) or related processing. Isoforms do not guarantee equivalent or similar functionality.
+    \item[Homology]: The existence of shared ancestry between sequences or structures; homologs (i.e., collections of homologous sequences) are derived from a common ancestor.
+    \item[Sequence Alignment]: The process of arranging two or more biological sequences (DNA, RNA, or protein) so that residues that are homologous or functionally/evolutionarily equivalent appear in the same position inside the sequences.
+    \item[Alignment Coverage]: When two sequences are aligned, the alignment coverage is the fraction of the shorter sequence that participates in the alignment.
+    \item[Sequence Identity]: Sometimes called \textit{percentage identity}, is the fraction of a sequence that matches exactly the other sequence after a pair of sequence is aligned.
+    \item[Protein Sequence Similarity Network (PSSN)]: A weighted graph where each vertex is a protein sequence and the edge-weight is a measure of pairwise similarity.
+    \item[Compositional Bias]: The significant deviation of a motif's composition from the background amino acid distribution.
+    \item[Ribbon Diagram]: A schematic 3D representation of a protein composed of folded secondary structure elements, where \(\alpha\) helices appear as spirals, \(\beta\) strands as arrows, and loops as tubes.
+
+    \begin{figure}[htbp]
+      \centering
+      \begin{minipage}{0.43\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{asset/secondary_struct.png}
+        \caption*{Image adapted from \textit{Orders of Protein Structure} by Khan Academy, available under a Creative Commons BY-NC-SA 4.0 License.}
+        \label{fig:secondary_struct}
+      \end{minipage}
+    \end{figure}
+
+  \end{description}
+
+  % Institutions, databases, frameworks, funds, software systems.
+  \subsubsection*{%
+    \textcolor{gray}{Infrastructure}
+  }
+
+  \begin{description}[leftmargin=1.2em]
+    \item[Universal Protein Resource (UniProt)]: A public database\footnote{\url{https://ftp.uniprot.org/pub/databases/uniprot}} of protein information. It is the product of a collaboration between the European Bioinformatics Institute (EBI), the SIB Swiss Institute of Bioinformatics, and the Protein Information Resource (PIR). UniProt comprises three databases, namely UniProtKB, UniRef and UniParc.
+    \item[UniProt Knowledgebase (UniProtKB)]: Central access point for extensively curated protein information, including function, classification and cross-references.
+    \item[AlphaFold Protein Structure Database]: A public database of three-dimensional protein structure predictions. It is a collaboration between EMBL-EBI and DeepMind, providing estimated three-dimensional arrangement (tertiary structure) for over 200 million proteins, covering nearly all known organisms.
+  \end{description}
+  
+  \subsubsection*{%
+    \textcolor{gray}{Uncategorized}
+  }
+
+  \begin{description}[leftmargin=1.2em]
+    \item[\(\mathbb{N}\)]: The set of natural numbers \(\{ 0, 1, 2, \dots  \}\).
+    \item[\(\mathbb{R}\)]: The set of real numbers.
+    \item[\(\mathscr{S}^*\)]: For a set \(\mathscr{S} \subseteq \mathbb{R}\), the symbol \(\mathscr{S}^*\) denotes a set containing all elements of \(\mathscr{S}\) except from \(0\).
+    \item[\(\mathcal{M}^e\)]: For a matrix \(\mathcal{M}\) and some \(e \in \mathbb{N}^*\), \(\mathcal{M}^e\) is defined as
+    \[
+      \mathcal{M}^e = \underbrace{\mathcal{M} \cdot \mathcal{M} \cdot \hdots \cdot \mathcal{M}}_{e \text{ terms}} .
+    \]
+    where \(\cdot\) is the matrix multiplication function.
+    \item[Clustering]: For a given set \(\mathscr{V}\), clustering is the task of finding a pairwise disjoint collection of subsets of \(\mathscr{V}\) based on structural or semantic similarities \(\mathscr{V}\) (e.g., based on the Euclidean distance function). Each subsequent subset of \(\mathscr{V}\) is a \textit{cluster}.
+    \item[Community Detection]: For a given directed and weighted graph \( (\mathscr{V}, \mathcal{A}) \), where \( \mathcal{A} \) is the adjacency matrix, community detection is a task defined as the clustering the set \(\mathscr{V}\). In this case, each cluster constitutes a \textit{community}.
+    \item[Sparsity]: A property of a matrix expressing the proportion of zero elements relative to its total number of elements. A \textit{sparse matrix} refers to one with a very large proportion of zero elements (more than 90\% of the matrix). In this text, the word \textit{sparsity} is loosely defined and is strictly used in the context of computational optimization.
+    \item[CLI]: Command line.
+    \item[Units]: Kilo; \(10^3\).
+    \item[M]: Mega; \(10^6\).
+    \item[GiB]: Gibibyte; \(2^{30}\) bytes.
+    \item[MiB]: Mebibyte; \(2^{20}\) bytes.
+  \end{description}
+
+  % ===== Conventions =====
+  
+  \subsection*{%
+    \centering Document Conventions
+  }
+
+  \begin{description}[leftmargin=1.2em]
+    \item[Font Style]: \textbf{Bold} is used for structural markers (e.g., headings, titles), while \textit{Italics} is used for emphasis points within the text content.
+    \item[Initial Capital Letters]: Multi-word terms that are formally defined (e.g., Protein Sequence Similarity Network) are primarily written using initial capital letters to denote their defined status. In some cases, \textit{Italics} may additionally be used for emphasis.
+    \item[Code]: The code in this thesis is written using a \texttt{monospaced} font family unless a different set of symbols improves readability, e.g., math mode in pseudocode.
+    \item[Placeholder]: When referring to plaintext pseudocode or schematic format descriptions, placeholders (or variables) are denoted by alphanumeric identifiers written in screaming snake case, e.g., \texttt{PLACEHOLDER\_X}.
+    \item[Date]: A date is expressed in the  \texttt{YYYY MMM DD} format where \texttt{MMM} contains the first 3-characters of the Month's name (e.g., Apr for April).
+
+  \cleardoublepage
+
+  % ===== Content =====
+
+  \pagenumbering{arabic}
+  \pagestyle{restpages}
+
+  \input{section/section1}
+  \cleardoublepage
+  \input{section/section2}
+  \cleardoublepage
+  \input{section/section3}
+  \cleardoublepage
+  \input{section/section4}
+  \cleardoublepage
+  \input{section/section5}
+  \cleardoublepage
+  \input{section/section6}
+  \cleardoublepage
+  \input{section/appendices}
+  \cleardoublepage
+
+  % ===== Reference =====
+
+  \bibliographystyle{IEEEtran}
+  \bibliography{ref}
+  \phantomsection
+  \addcontentsline{toc}{section}{References}
+
+\end{document}
