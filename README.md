@@ -1,22 +1,35 @@
-MIT License
+# MSc Thesis -- Scalability of Markov Clustering for Protein Sequence Networks
 
-Copyright 2026- Apostolos Dimoulakis
+**Author**: Apostolos M. Dimoulakis
 
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the 
-"Software"), to deal in the Software without restriction, including 
-without limitation the rights to use, copy, modify, merge, publish, 
-distribute, sublicense, and/or sell copies of the Software, and to 
-permit persons to whom the Software is furnished to do so, subject to 
-the following conditions:
+**Supervisor**: Prof. Christos A. Ouzounis
 
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
+**Institution**: BCCB-AIIA, Department of Computer Science, Aristotle University of Thessaloniki
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## Overview
+
+This repository contains the LaTeX source code and supplementary material for my MSc thesis in the field of Computational Genomics. The thesis establishes a computational baseline for benchmarking community detection methods on the task of protein sequence processing.
+
+## Directory Structure
+
+```
+.
+|-> main.tex                 <!-- Main LaTeX entry point.
+|-> ref.bib                  <!-- Bibliography.
+|-> setup.sty                <!-- Package and style configuration.
+|-- section/                 <!-- Section source files.
+|   |-> section1.tex
+|   |-> section2.tex
+|   |-> section3.tex
+|   |-> section4.tex
+|   |-> section5.tex
+|   |-> section6.tex
+|   |-> appendices.tex
+|
+|-- asset/                   <!-- Figures and diagrams.
+|
+|-> .gitignore
+|-> LICENSE
+|-> README.md
+|-> main.pdf
+```
