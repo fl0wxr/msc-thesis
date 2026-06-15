@@ -1,7 +1,7 @@
 % ===== Load Package =====
 
 % Figures. `[draft]` replaces images with placeholders. Useful when in early writing stages for faster compilation.
-\usepackage{graphicx}
+\usepackage[draft]{graphicx}
 
 % Allows the use of H(here) option in figure and table placement. H forces the placement of a figure or table directly below some other object.
 \usepackage{float}
@@ -143,21 +143,18 @@
 %  headsep=8mm
 }
 
-% Header text: First pages.
-\fancypagestyle{firstpages}{
+\fancypagestyle{headerpage}{
 	\fancyhead[L]{%
-	  \small Scalable Protein Community Detection\\Manuscript
+	  \small Scalable Protein Community Detection\\Draft v0.1
 	}
 	\fancyhead[R]{%
 	  \small © 2026 The Author(s)\\Licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{CC-BY 4.0 license}
-	} % PREPRINT can be placed alternatively if this is a manuscript.
+	}
 }
-
-% Header text: The rest of pages.
 \fancypagestyle{restpages}{
 	\fancyhead[L]{}
 	\fancyhead[R]{}
-	\renewcommand{\headrulewidth}{0.4pt} % Horizontal line across header
+	\renewcommand{\headrulewidth}{0.4pt}  % Horizontal line across header.
 }
 
 % Remove the horizontal line below the header.
