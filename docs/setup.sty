@@ -144,17 +144,18 @@
 }
 
 \fancypagestyle{headerpage}{
-	\fancyhead[L]{%
-	  \small Scalable Protein Community Detection\\Draft v0.1
-	}
-	\fancyhead[R]{%
-	  \small © 2026 The Author(s)\\Licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{CC-BY 4.0 license}
-	}
+  \setlength{\headheight}{25pt}
+  \fancyhead[L]{%
+    \raisebox{15pt}[0pt][0pt]{\begin{minipage}[t]{0.4\textwidth}\scriptsize Scalable Protein Community Detection\\Draft v0.1\end{minipage}}
+  }
+  \fancyhead[R]{%
+    \raisebox{15pt}[0pt][0pt]{\begin{minipage}[t]{0.4\textwidth}\raggedleft\scriptsize \copyright\ 2026 The Author(s)\\Licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{CC-BY 4.0 license}\end{minipage}}
+  }
 }
 \fancypagestyle{restpages}{
-	\fancyhead[L]{}
-	\fancyhead[R]{}
-	\renewcommand{\headrulewidth}{0.4pt}  % Horizontal line across header.
+  \fancyhead[L]{}
+  \fancyhead[R]{}
+  \renewcommand{\headrulewidth}{0.4pt}
 }
 
 % Remove the horizontal line below the header.
