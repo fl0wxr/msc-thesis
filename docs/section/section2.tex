@@ -68,11 +68,13 @@ in a diverse set of tasks in biological sequence analyses~\cite{mclBrohee,
 mclVlasblom, mclHaue, mclGibbons}.
 
 Below is an algorithmic construction of MCL, applied on protein sequence data.
-The purpose of this formulation is to provide a foundation, primarily for understanding
-the computational complexity and memory requirements of the algorithm, which
-are central to evaluating its scalability. At the same time, the formulation
-highlights the stochastic mechanisms underlying MCL. We begin with a set of
-definitions that establish the necessary groundwork.
+The purpose of this formulation is to provide a foundation, primarily for
+understanding the computational complexity and memory requirements of the
+algorithm, which are central to evaluating the algorithm's scalability. At the
+same time, the formulation highlights the stochastic mechanisms underlying MCL,
+illustrating how the simulation of random walks is used to identify cluster
+structure. We begin with a set of definitions that establish the necessary
+groundwork.
 
 \textbf{Definition 1}. For some \(n \in \mathbb{N}^*\), a \textit{weighted graph} is defined as \((\mathscr{V}, \mathcal{A})\), where \(\mathscr{V} = \{ v_i : i \in \{ 1, \dots, n \} \}\) holds all the graph's vertices and \(\mathcal{A}: \{ 1, \dots, n \}^2 \rightarrow \mathbb{R}\) is a square matrix where each row \(j\) and column \(k\) corresponds to vertices \(v_j\) and \(v_k\) respectively. The \(\mathcal{A}_{j,k}\) element of \(\mathcal{A}\) is the directed weight from the column \(k\) vertex to the row \(j\) vertex. \(\mathcal{A}\) is called the \textit{adjacency matrix}, and its elements satisfy the property
 \[
@@ -85,7 +87,7 @@ definitions that establish the necessary groundwork.
 
 \textbf{Definition 4}. For a weighted graph \((\mathscr{V}, \mathcal{A})\), the \textit{Markov matrix} \(\mathcal{M}\) is a square matrix \(\mathcal{M}: \{ 1, \dots, n \}^2 \rightarrow [0, 1]\) where the value of cell \(\mathcal{M}_{j, k}\) semantically expresses the conditional \textit{probability of transition} from vertex \(v_k\) to \(v_j\) at the initial state with index $0$. Hence, \(\mathcal{M}_{j,k}\) acts as \(\mathcal{P}(v_j \ | \ v_k, \ \tau=0)\) in probabilistic literature.
 
-\textbf{Remark}. In this case, the graph represents a stochastic system, where the \(k\) column of \(\mathcal{M}\) is normalized with respect to the \(k\) column of \(\mathcal{A}\) (observe Eq.~\ref{eq:markovMat}). Hence, the vector
+\textbf{Remark}. In this case, the graph represents a stochastic system, where the column \(k\) of the matrix \(\mathcal{M}\) is normalized with respect to column \(k\) of \(\mathcal{A}\) (observe Eq.~\ref{eq:markovMat}). Hence, the vector
 \[
   \mathcal{M}_{\cdot, k} =
   \begin{pmatrix}
