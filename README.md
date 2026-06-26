@@ -1,4 +1,4 @@
-# MSc Thesis -- Analysis of a Scalable and Reproducible Clustering Workflow in Protein Sequence Similarity Networks
+# MSc Thesis: Analysis of a Scalable and Reproducible Clustering Workflow in Protein Sequence Similarity Networks
 
 **Author**: Apostolos M. Dimoulakis
 
