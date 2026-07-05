@@ -12,11 +12,13 @@
 *.nav
 *.fls
 *.fdb_latexmk
+*.adj
 *.bkp
 *.kra
 *.drawio
 *.fasta
-*.adj
 *.pdb
 *.graphia
 *.docx
+*.vrb
+*.synctex*
