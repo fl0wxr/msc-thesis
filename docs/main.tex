@@ -57,15 +57,54 @@ Thessaloniki\\Department of Informatics}}}
     \center Abstract
   }
   
-  \lipsum[1]
-    
+  \textbf{Background}: Protein clustering is an essential data reduction technique for managing the scale of modern genomic datasets. As sequencing technologies advance, the volume of publicly available protein sequences has grown exponentially, yet the computational resources required for downstream functional and structural analysis often lag behind.
+
+  \textbf{Problem}: The central problem addressed in this thesis is whether a single compute node can handle the growing scale of genomic data for graph-based protein clustering.
+
+  \textbf{Method}: Using the Markov Cluster Algorithm (MCL) and its high-performance variant HipMCL, we assessed performance across datasets ranging from 3,500 to 82 million sequences drawn from UniProtKB reference proteomes. To enable convenient and reproducible execution, we developed \texttt{bioscflow}, a reproducible workflow implementing the entire pipeline.
+
+  \textbf{Results}: Here we show that MCL scales to 82 million sequences on a single node, completing within 2--3 days using approximately 440 GiB of memory, while HipMCL is impractical beyond 3 million sequences in the same environment due to excessive memory overhead and convergence failures. Qualitative analysis --- including taxonomic purity assessment, graph-based community validation, and structure superimposition of AlphaFold-derived models --- confirms that the largest clusters are taxonomically coherent and structurally consistent.
+
+  \textbf{Conclusion}: The workflow meets its design priorities: scalability, as MCL handles production-scale data; reproducibility, through \texttt{bioscflow} with versioned components such as MCL; and interpretability, via alignment-based graph edges with no black-box embeddings. These findings establish a reliable computational baseline for the StratoCluster initiative and provide a foundation for future GPU-accelerated and distributed clustering efforts.
+
+  \vspace{0.3cm}
+
+  \noindent{\small \textcolor{black!80}{\textbf{Keywords}: protein clustering, Markov Cluster Algorithm, HipMCL, sequence similarity networks, scalability, reproducibility, interpretability, AlphaFold, StratoCluster}}
+
   \vspace{\fill}
 
   \subsection*{%
     \center Περίληψη
   }
 
-  \lipsum[1]
+%  Η ομαδοποίηση πρωτεϊνών αποτελεί μια ουσιαστική τεχνική μείωσης δεδομένων για
+%  τη διαχείριση της κλίμακας των σύγχρονων γονιδιωματικών συνόλων δεδομένων. Η
+%  παρούσα διπλωματική εργασία διερευνά την πρακτική επεκτασιμότητα,
+%  αναπαραγωγιμότητα και ερμηνευσιμότητα ενός υπάρχοντος workflow ομαδοποίησης
+%  βασισμένου σε γράφο που αναπαριστά τις ομοιότητες πρωτεϊνικών αλληλουχιών
+%  (PSSN) και οι υπολογισμοί βασίστηκαν σε έναν μόνο κόμβο υπολογισμού.
+%  Χρησιμοποιώντας τον αλγόριθμο Markov Cluster Algorithm (MCL) και την υψηλής
+%  απόδοσης παραλλαγή του HipMCL, πραγματοποιήσαμε συστηματική συγκριτική
+%  αξιολόγηση της απόδοσης σε σύνολα δεδομένων που κυμαίνονται από 3500 έως 82
+%  εκατομμύρια αλληλουχίες, προερχόμενα από τα reference proteomes της UniProtKB
+%  --- ένα μεγάλο υποσύνολο του φυσικού γονιδιωματικού χώρου. Για τη διευκόλυνση
+%  της αναπαραγωγιμότητας, αναπτύξαμε το εργαλείο \texttt{bioscflow}, μια
+%  συμπαγή υλοποίηση ολόκληρου του workflow. Τα αποτελέσματά μας δείχνουν ότι το
+%  MCL κλιμακώνεται έως και 82 εκατομμύρια αλληλουχίες σε έναν μόνο κόμβο υπολογισμού,
+%  ολοκληρώνοντας την εκτέλεση σε 2–3 ημέρες με κατανάλωση μνήμης περίπου 440
+%  GiB, ενώ το HipMCL είναι μη πρακτικό πέραν των 3 εκατομμυρίων αλληλουχιών στο
+%  ίδιο περιβάλλον, λόγω υπερβολικής κατανάλωσης μνήμης και αποτυχιών σύγκλισης.
+%  Η ποιοτική ανάλυση --- περιλαμβανομένης της μετρικής purity, της επικύρωσης κοινοτήτων του γράφου, και του superimposition των πρωτεϊνικών δομών (AlphaFold) 
+%  --- επιβεβαιώνει ότι οι μεγαλύτερες ομάδες
+%  (clusters) είναι ταξινομικά συνεκτικές και δομικά συνεπείς. Η ροή εργασίας
+%  ανταποκρίνεται στις σχεδιαστικές της προτεραιότητες: επεκτασιμότητα, καθώς το
+%  MCL διαχειρίζεται δεδομένα παραγωγικής κλίμακας· αναπαραγωγιμότητα, μέσω του
+%  \texttt{bioscflow} με εκδόσιμα συστατικά (π.χ. MCL commit)· και ερμηνευσιμότητα,
+%  μέσω γραφικών ακμών που βασίζονται σε στοίχιση αλληλουχιών, χωρίς μαύρα
+%  κουτιά. Τα ευρήματα αυτά θεμελιώνουν μια αξιόπιστη υπολογιστική γραμμή βάσης
+%  για την πρωτοβουλία StratoCluster και παρέχουν μια βάση για μελλοντικές
+%  προσπάθειες επιτάχυνσης μέσω GPU και κατανεμημένης επεξεργασίας.
+  
   
   \vspace{\fill}
   
