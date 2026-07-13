@@ -2,7 +2,7 @@
 
 **Author**: Apostolos M. Dimoulakis
 
-**Supervisor**: Dr. Christos A. Ouzounis
+**Committee**: Prof. Christos Ouzounis (Supervisor), Prof. Eleftherios Angelis, Prof. Grigorios Tsoumakas
 
 **Organization**: BCCB-AIIA, Department of Computer Science, Aristotle University of Thessaloniki
 
@@ -23,14 +23,13 @@ detection methods on the task of protein sequence processing.
     |-> main.tex                 <!-- LaTeX entry point.
     |-> ref.bib                  <!-- Bibliography.
     |-> setup.sty                <!-- Package and style configuration.
-    |-- section                  <!-- Section source files.
-    |   |-> section1.tex
-    |   |-> section2.tex
-    |   |-> section3.tex
-    |   |-> section4.tex
-    |   |-> section5.tex
-    |   |-> section6.tex
-    |   |-> appendices.tex
-    |
     |-- asset                    <!-- Document figures and diagrams.
+    |-- section                  <!-- Section source files.
+        |-> section1.tex
+        |-> section2.tex
+        |-> section3.tex
+        |-> section4.tex
+        |-> section5.tex
+        |-> section6.tex
+        |-> appendices.tex
 ```
