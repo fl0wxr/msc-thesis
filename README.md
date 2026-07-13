@@ -1,4 +1,4 @@
-# MSc Thesis: Analysis of a Scalable and Reproducible Clustering Workflow in Protein Sequence Similarity Networks
+# MSc Thesis: Computational Assessment of a Scalable, Reproducible & Interpretable Clustering Workflow in the Natural Genome Space
 
 **Author**: Apostolos M. Dimoulakis
 
